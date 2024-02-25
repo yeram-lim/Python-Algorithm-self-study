@@ -3,6 +3,8 @@ from typing import List
 
 class Solution:
     def findJudge(self, n: int, trust: List[List[int]]) -> int:
+        if n == 1:
+          return 1 
         identity_list = [0 for i in range(n)]
         relationship_dict = {}
         
