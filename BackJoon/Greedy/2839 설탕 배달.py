@@ -3,24 +3,22 @@ N = int(input())
 kg_list = [5, 3]
 answer = 0
 
-def get_count(total_kg, kg):
-    count = total_kg // kg
-    last = total_kg % kg
-    return [count, last]
-
-temp_count = 0
-temp_last = 0
-for kg in kg_list:
+if N % 5 == 0:
+    print(N // 5)
+else:
     total = N
-    if temp_last > 0 and temp_last % kg == 0:
-        total = temp_last
-    result = get_count(total, kg)
-    count, last = result
-    
-    if total != N:
-        temp_count += count
-    else:
-        temp_count = count if count < temp_count else temp_count
-    temp_last = last
-    
-print(temp_count if temp_last == 0 else -1)
+    count = 0
+    while total > 0:
+        total -= 3
+        count += 1
+
+        if total % 5 == 0:
+            count += total // 5
+            print(count)
+            break
+        elif total < 3:
+            print(-1)
+            break
+        elif total == 0:
+            print(count)
+            break
