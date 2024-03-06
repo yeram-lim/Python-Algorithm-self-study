@@ -1,9 +1,7 @@
 N = int(input())
 minute_list = list(map(int, input().split()))
 minute_list.sort()
-total = 0
-prev = 0
-for min in minute_list:
-    total += (prev + min)
-    prev = prev + min
-print(total)
+answer = 0
+for x in range(1, N+1):
+    answer += sum(minute_list[0:x])  
+print(answer)
