@@ -1,22 +1,26 @@
-from collections import deque
-
+import sys
+input=sys.stdin.readline
+sys.setrecursionlimit(1000000)
 
 N = int(input())
 graph = [[] for _ in range(N + 1)]
 parents = [0 for _ in range(N + 1)]
 
-for i in range(N - 2):
-  node1, node2 = list(map(int, input().split()))
+for i in range(N - 1):
+  node1, node2 = map(int, input().split())
   graph[node1].append(node2)
   graph[node2].append(node1)
 
-q = deque()
-for i in range(1, N + 1):
-  children_nodes = graph[i]
+def dfs(parent):
+  children_nodes = graph[parent] #[6, 4]
   for child in children_nodes:
-    graph[child] = i
-    
+    if parents[child] == 0:
+      parents[child] = parent
+      dfs(child)
+dfs(1)
 
-print(graph)
-# [[], [6, 4], [4], [6, 5], [1, 2], [3], [1, 3], []]
+for j in range(2, len(parents)):
+    print(parents[j])
+
+# print(graph,parents)
 
