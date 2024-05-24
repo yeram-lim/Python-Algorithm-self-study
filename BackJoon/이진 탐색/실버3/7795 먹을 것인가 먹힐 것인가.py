@@ -16,39 +16,24 @@ for i in range(T):
             pointer_mid = (pointer_end - pointer_start) // 2
             b_start, b_mid, b_end = B[pointer_start], B[pointer_mid], B[pointer_end]
 
-            if pointer_start == pointer_mid:
-                result += pointer_mid
+            if pointer_end - pointer_start == 1 and b_start < a < b_end:
                 break
 
-            if b_mid > a:
-                pointer_end = pointer_mid
-            if b_mid < a:
-                pointer_start = pointer_mid
-            
+            if a <= b_start:
+                pointer_end = pointer_start
+                break
+            elif b_end <= a:
+                break
 
-            # if b_start > a:
-            #     break
-            # elif b_end < a:
-            #     result += pointer_end + 1
-            #     break
-            # elif b_start == a:
-            #     result += pointer_start
-            #     break
-            # elif b_end == a:
-            #     result = pointer_end
-            #     break
-            # elif b_mid == a:
-            #     result += pointer_mid
-            #     break
-            # else:
-            #     if pointer_mid == pointer_start:
-            #         if a > b_start:
-            #             result += pointer_start + 1
-            #         break
-            #     if b_mid > a:
-            #         pointer_end = pointer_mid
-            #     if b_mid < a:
-            #         pointer_start = pointer_mid
+            if a < b_mid:
+                pointer_end = pointer_mid
+            elif b_mid < a:
+                pointer_start = pointer_mid
+            else:
+                pointer_end = pointer_mid
+                break
+
+        result += pointer_end  
     results.append(result)
 
 for result in results:
